@@ -36,9 +36,9 @@ export default function AboutPage() {
           >
             <motion.div variants={fadeInUp} className="flex flex-col gap-6">
               <p className="font-serif text-xl text-bone/80 leading-relaxed italic">
-                "I started making rings because I couldn't find anything that
+                &quot;I started making rings because I couldn&apos;t find anything that
                 felt like mine. Everything was too clean, too safe, too made
-                for someone who doesn't exist."
+                for someone who doesn&apos;t exist.&quot;
               </p>
               <p className="font-serif text-base text-bone/60 leading-relaxed">
                 Krook Studio is a one-person operation working out of a studio
@@ -48,7 +48,7 @@ export default function AboutPage() {
               </p>
               <p className="font-serif text-base text-bone/60 leading-relaxed">
                 The stones come from flea markets, mineral fairs, and the
-                occasional lucky find. They're chosen for character, not
+                occasional lucky find. They&apos;re chosen for character, not
                 perfection — inclusions, asymmetries, weird colour shifts.
                 Exactly what most jewellers would reject.
               </p>
@@ -57,8 +57,8 @@ export default function AboutPage() {
             <motion.div variants={fadeInUp} className="flex flex-col gap-6">
               <p className="font-serif text-base text-bone/60 leading-relaxed">
                 The name comes from an old Nordic word for a bend in a river —
-                that point where the water changes direction unexpectedly. It's
-                that quality in materials I'm always looking for: the moment
+                that point where the water changes direction unexpectedly. It&apos;s
+                that quality in materials I&apos;m always looking for: the moment
                 something familiar becomes strange.
               </p>
               <p className="font-serif text-base text-bone/60 leading-relaxed">

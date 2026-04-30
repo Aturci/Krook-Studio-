@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 
 const TEXT = "raw · organic · underground · handcrafted · berlin · one of a kind · ";
 

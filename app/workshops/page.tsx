@@ -64,7 +64,7 @@ export default function WorkshopsPage() {
           </h2>
           <p className="font-serif text-base text-bone/60 leading-relaxed">
             Want to book the studio for a private group, a birthday, or a
-            one-on-one? Get in touch and we'll make it happen.
+            one-on-one? Get in touch and we&apos;ll make it happen.
           </p>
           <a
             href="https://instagram.com/krook.studio"
