@@ -1,101 +1,126 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import Link from "next/link";
+import HeroSection from "@/components/HeroSection";
+import MarqueeText from "@/components/MarqueeText";
+import ProductCard from "@/components/ProductCard";
+import { rings } from "@/data/rings";
+import { workshops } from "@/data/workshops";
+import { fadeInUp, stagger } from "@/lib/motion";
+
+export default function HomePage() {
+  const featured = rings.slice(0, 3);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <HeroSection />
+      <MarqueeText />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Featured Products */}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+          className="flex flex-col gap-16"
+        >
+          {/* Heading */}
+          <motion.div variants={fadeInUp} className="flex flex-col gap-3">
+            <span className="font-sans text-xs tracking-[0.25em] uppercase text-bone/30">
+              From the studio
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl tracking-wide text-bone">
+              New work
+            </h2>
+          </motion.div>
+
+          {/* Grid */}
+          <motion.div
+            variants={stagger}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+            {featured.map((ring) => (
+              <motion.div key={ring.id} variants={fadeInUp}>
+                <ProductCard ring={ring} />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div variants={fadeInUp} className="flex justify-center">
+            <Link
+              href="/shop"
+              className="font-sans text-xs tracking-[0.2em] uppercase text-bone/60 hover:text-bone border-b border-bone/20 hover:border-bone pb-1 transition-all duration-200"
+            >
+              View all pieces →
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Workshop Teaser */}
+      <section className="border-t border-ash/30 bg-ash/10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+          className="max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          {/* Text */}
+          <motion.div variants={fadeInUp} className="flex flex-col gap-6">
+            <span className="font-sans text-xs tracking-[0.25em] uppercase text-bone/30">
+              Learn the craft
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl tracking-wide text-bone leading-snug">
+              Make something with your hands
+            </h2>
+            <p className="font-serif text-lg text-bone/60 leading-relaxed">
+              Small group workshops in the Berlin studio. Wax carving, stone
+              setting, the whole ritual. You leave with something you made
+              yourself.
+            </p>
+            <Link
+              href="/workshops"
+              className="self-start px-6 py-3 border border-bone/30 font-sans text-xs tracking-[0.2em] uppercase text-bone hover:bg-bone hover:text-void transition-colors duration-200"
+            >
+              See upcoming workshops
+            </Link>
+          </motion.div>
+
+          {/* Upcoming dates */}
+          <motion.div variants={stagger} className="flex flex-col gap-4">
+            {workshops.map((w) => (
+              <motion.div
+                key={w.id}
+                variants={fadeInUp}
+                className="border border-ash/30 p-6 flex flex-col gap-2 hover:border-gold/40 transition-colors duration-300"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-display text-sm tracking-wide text-bone">
+                    {w.title}
+                  </h3>
+                  <span className="font-serif text-base text-gold shrink-0">
+                    €{w.price}
+                  </span>
+                </div>
+                <p className="font-sans text-xs text-bone/40">
+                  {new Date(w.date).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
+                <p className="font-sans text-xs text-rust">
+                  {w.spotsRemaining} spot{w.spotsRemaining !== 1 ? "s" : ""} remaining
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+    </>
   );
 }
