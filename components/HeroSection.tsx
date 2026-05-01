@@ -29,7 +29,7 @@ export default function HeroSection() {
 
       {/* Faint radial glow */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-rust/5 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-terracotta/5 blur-[120px]" />
       </div>
 
       {/* Content */}
@@ -75,7 +75,7 @@ export default function HeroSection() {
         >
           <Link
             href="/shop"
-            className="inline-block mt-2 px-8 py-4 bg-rust text-bone font-sans text-xs tracking-[0.2em] uppercase hover:bg-rust/80 transition-colors duration-200"
+            className="inline-block mt-2 px-8 py-4 bg-terracotta text-bone font-sans text-xs tracking-[0.2em] uppercase hover:bg-terracotta/80 transition-colors duration-200"
           >
             Explore the world
           </Link>
@@ -113,25 +113,25 @@ function JesterSymbol() {
       {/* Outer diamond */}
       <path
         d="M32 4L60 32L32 60L4 32L32 4Z"
-        stroke="#c9963a"
+        stroke="#D2BFA3"
         strokeWidth="1.5"
         fill="none"
       />
       {/* Inner diamond */}
       <path
         d="M32 14L50 32L32 50L14 32L32 14Z"
-        stroke="#8b2500"
+        stroke="#B15341"
         strokeWidth="1"
         fill="none"
         strokeDasharray="3 3"
       />
       {/* Center dot */}
-      <circle cx="32" cy="32" r="3" fill="#c9963a" />
+      <circle cx="32" cy="32" r="3" fill="#D2BFA3" />
       {/* Corner marks */}
-      <circle cx="32" cy="6" r="1.5" fill="#c9963a" opacity="0.5" />
-      <circle cx="58" cy="32" r="1.5" fill="#c9963a" opacity="0.5" />
-      <circle cx="32" cy="58" r="1.5" fill="#c9963a" opacity="0.5" />
-      <circle cx="6" cy="32" r="1.5" fill="#c9963a" opacity="0.5" />
+      <circle cx="32" cy="6" r="1.5" fill="#D2BFA3" opacity="0.5" />
+      <circle cx="58" cy="32" r="1.5" fill="#D2BFA3" opacity="0.5" />
+      <circle cx="32" cy="58" r="1.5" fill="#D2BFA3" opacity="0.5" />
+      <circle cx="6" cy="32" r="1.5" fill="#D2BFA3" opacity="0.5" />
     </motion.svg>
   );
 }

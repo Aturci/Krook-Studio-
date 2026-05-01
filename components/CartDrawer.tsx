@@ -57,7 +57,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <Link
                 href="/shop"
                 onClick={onClose}
-                className="mt-4 px-6 py-3 bg-rust text-bone font-sans text-sm tracking-widest uppercase hover:bg-rust/80 transition-colors"
+                className="mt-4 px-6 py-3 bg-terracotta text-bone font-sans text-sm tracking-widest uppercase hover:bg-terracotta/80 transition-colors"
               >
                 Explore the Shop
               </Link>

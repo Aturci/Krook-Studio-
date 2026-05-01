@@ -2,10 +2,23 @@
 
 import { motion } from "framer-motion";
 import WorkshopCard from "@/components/WorkshopCard";
-import { workshops } from "@/data/workshops";
+import { workshops, type Workshop } from "@/data/workshops";
 import { fadeInUp, stagger } from "@/lib/motion";
 
+function groupByMonth(items: Workshop[]): Record<string, Workshop[]> {
+  return items.reduce<Record<string, Workshop[]>>((acc, w) => {
+    const key = new Date(w.date + "T00:00:00").toLocaleDateString("en-GB", {
+      month: "long",
+      year: "numeric",
+    });
+    (acc[key] ??= []).push(w);
+    return acc;
+  }, {});
+}
+
 export default function WorkshopsPage() {
+  const byMonth = groupByMonth(workshops);
+
   return (
     <div className="min-h-screen pt-32 pb-24">
       <div className="max-w-5xl mx-auto px-6">
@@ -20,11 +33,11 @@ export default function WorkshopsPage() {
             variants={fadeInUp}
             className="font-sans text-xs tracking-[0.25em] uppercase text-bone/30"
           >
-            Berlin studio
+            Berlin · Cape Town
           </motion.span>
           <motion.h1
             variants={fadeInUp}
-            className="font-display text-4xl sm:text-5xl tracking-wide text-bone"
+            className="font-serif text-4xl sm:text-5xl tracking-wide text-bone"
           >
             Workshops
           </motion.h1>
@@ -38,16 +51,29 @@ export default function WorkshopsPage() {
           </motion.p>
         </motion.div>
 
-        {/* Workshop cards */}
+        {/* Calendar — grouped by month */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={stagger}
-          className="flex flex-col gap-8"
+          className="flex flex-col gap-14"
         >
-          {workshops.map((w) => (
-            <motion.div key={w.id} variants={fadeInUp}>
-              <WorkshopCard workshop={w} />
+          {Object.entries(byMonth).map(([month, items]) => (
+            <motion.div key={month} variants={fadeInUp} className="flex flex-col gap-6">
+              {/* Month heading */}
+              <div className="flex items-center gap-4">
+                <span className="font-sans text-xs tracking-[0.25em] uppercase text-bone/30">
+                  {month}
+                </span>
+                <div className="flex-1 h-px bg-ash/20" />
+              </div>
+
+              {/* Workshop cards for this month */}
+              <div className="flex flex-col gap-6">
+                {items.map((w) => (
+                  <WorkshopCard key={w.id} workshop={w} />
+                ))}
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -59,7 +85,7 @@ export default function WorkshopsPage() {
           transition={{ delay: 0.6, duration: 0.7 }}
           className="mt-20 border-t border-ash/20 pt-12 flex flex-col gap-4 max-w-lg"
         >
-          <h2 className="font-display text-xl tracking-wide text-bone">
+          <h2 className="font-serif text-xl tracking-wide text-bone">
             Private sessions
           </h2>
           <p className="font-serif text-base text-bone/60 leading-relaxed">

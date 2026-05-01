@@ -24,7 +24,7 @@ export default function JournalPage() {
           </motion.span>
           <motion.h1
             variants={fadeInUp}
-            className="font-display text-4xl sm:text-5xl tracking-wide text-bone"
+            className="font-serif text-4xl sm:text-5xl tracking-wide text-bone"
           >
             Journal
           </motion.h1>

@@ -21,7 +21,7 @@ export default function ProductCard({ ring }: ProductCardProps) {
         <div className="relative overflow-hidden aspect-[3/4] bg-ash/20 mb-5">
           <Image
             src={ring.image}
-            alt={ring.name}
+            alt={ring.imageAlt ?? ring.name}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
             sizes="(max-width: 768px) 100vw, 33vw"

@@ -3,6 +3,7 @@ import Link from "next/link";
 const footerLinks = [
   { href: "/shop", label: "Shop" },
   { href: "/workshops", label: "Workshops" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/about", label: "About" },
   { href: "/journal", label: "Journal" },
 ];
@@ -54,7 +55,7 @@ export default function Footer() {
           >
             @krook.studio
           </a>
-          <span className="font-sans text-sm text-bone/40">Berlin, Germany</span>
+          <span className="font-sans text-sm text-bone/40">Berlin · Cape Town</span>
         </div>
       </div>
 

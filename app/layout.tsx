@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Cinzel_Decorative, Cormorant_Garamond, Inter } from "next/font/google";
+import { Barrio, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const cinzel = Cinzel_Decorative({
+const barrio = Barrio({
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  variable: "--font-cinzel",
+  weight: ["400"],
+  variable: "--font-barrio",
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cinzel.variable} ${cormorant.variable} ${inter.variable} bg-void text-bone antialiased`}
+        className={`${barrio.variable} ${playfair.variable} ${inter.variable} bg-void text-bone antialiased`}
       >
         <Navbar />
         <main>{children}</main>

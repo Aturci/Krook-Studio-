@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0906;
-  --foreground: #ede8e0;
+  --background: #1A1A1A;
+  --foreground: #F4F1EB;
 }
 
 body {
@@ -19,10 +19,10 @@ body {
   }
 
   .font-display {
-    font-family: var(--font-cinzel), serif;
+    font-family: var(--font-barrio), serif;
   }
 
   .font-serif {
-    font-family: var(--font-cormorant), Georgia, serif;
+    font-family: var(--font-playfair), Georgia, serif;
   }
 }

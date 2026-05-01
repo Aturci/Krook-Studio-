@@ -9,15 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: "#0a0906",
-        bone: "#ede8e0",
-        rust: "#8b2500",
-        gold: "#c9963a",
-        ash: "#3a3530",
+        // Updated palette — values changed, tokens kept for compatibility
+        void: "#1A1A1A",       // Charred Black
+        bone: "#F4F1EB",       // Bone White
+        rust: "#B15341",       // Terracotta
+        gold: "#D2BFA3",       // Sandy Clay
+        ash: "#4B5E63",        // Petrol
+        // Semantic aliases (new names)
+        charred: "#1A1A1A",
+        boneWhite: "#F4F1EB",
+        sandy: "#D2BFA3",
+        petrol: "#4B5E63",
+        terracotta: "#B15341",
       },
       fontFamily: {
-        display: ["var(--font-cinzel)", "serif"],
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
+        display: ["var(--font-barrio)", "serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },
