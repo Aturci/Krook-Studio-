@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import type { Workshop } from "@/data/workshops";
+import ContactButtons from "./ContactButtons";
 
 type WorkshopCardProps = {
   workshop: Workshop;
@@ -72,12 +72,7 @@ export default function WorkshopCard({ workshop }: WorkshopCardProps) {
 
       {/* CTA */}
       {!sold && (
-        <Link
-          href={`/workshops#book-${workshop.id}`}
-          className="self-start px-6 py-3 bg-terracotta text-bone font-sans text-xs tracking-[0.2em] uppercase hover:bg-terracotta/80 transition-colors duration-200"
-        >
-          Reserve a spot
-        </Link>
+        <ContactButtons subject={`Workshop booking: ${workshop.title}`} />
       )}
     </motion.article>
   );

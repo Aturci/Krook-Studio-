@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import type { Ring } from "@/data/rings";
+import ContactButtons from "./ContactButtons";
 
 type ProductCardProps = {
   ring: Ring;
@@ -34,7 +35,7 @@ export default function ProductCard({ ring }: ProductCardProps) {
         </div>
 
         {/* Info */}
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 mb-4">
           <div className="flex items-start justify-between gap-4">
             <h3 className="font-display text-sm tracking-wider text-bone group-hover:text-gold transition-colors">
               {ring.name}
@@ -48,6 +49,8 @@ export default function ProductCard({ ring }: ProductCardProps) {
           </p>
         </div>
       </Link>
+
+      <ContactButtons subject={`Inquiry: ${ring.name}`} />
     </motion.article>
   );
 }
