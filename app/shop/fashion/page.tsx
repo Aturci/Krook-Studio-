@@ -11,6 +11,7 @@ export default function FashionPage() {
   const [items, setItems] = useState<Ring[]>(rings.filter((r) => r.category === "fashion"));
 
   useEffect(() => {
+    if (!supabase) return;
     supabase
       .from("rings")
       .select("*")

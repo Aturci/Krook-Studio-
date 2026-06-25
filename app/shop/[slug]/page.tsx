@@ -50,16 +50,20 @@ export default async function ProductDetailPage({
   let ring: Ring | null = null;
 
   // Try Supabase first
-  const { data, error } = await supabase
-    .from("rings")
-    .select("*")
-    .eq("slug", params.slug)
-    .single();
+  if (supabase) {
+    const { data, error } = await supabase
+      .from("rings")
+      .select("*")
+      .eq("slug", params.slug)
+      .single();
 
-  if (!error && data) {
-    ring = dbRingToRing(data as DbRing);
-  } else {
-    // Fallback to static data
+    if (!error && data) {
+      ring = dbRingToRing(data as DbRing);
+    }
+  }
+
+  // Fallback to static data
+  if (!ring) {
     ring = rings.find((r) => r.slug === params.slug) ?? null;
   }
 

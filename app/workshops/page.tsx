@@ -33,6 +33,7 @@ export default function WorkshopsPage() {
   const [items, setItems] = useState<Workshop[]>(workshops);
 
   useEffect(() => {
+    if (!supabase) return;
     supabase
       .from("workshops")
       .select("*")

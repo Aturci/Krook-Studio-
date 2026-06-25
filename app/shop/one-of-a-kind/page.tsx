@@ -11,6 +11,7 @@ export default function OneOfAKindPage() {
   const [items, setItems] = useState<Ring[]>(rings.filter((r) => r.category === "one-of-a-kind"));
 
   useEffect(() => {
+    if (!supabase) return;
     supabase
       .from("rings")
       .select("*")

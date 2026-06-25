@@ -21,6 +21,7 @@ export default function JournalPage() {
   const [items, setItems] = useState<JournalPost[]>(journalPosts);
 
   useEffect(() => {
+    if (!supabase) return;
     supabase
       .from("journal_posts")
       .select("*")

@@ -20,6 +20,7 @@ export default function GalleryPage() {
   const [items, setItems] = useState<GalleryItem[]>(galleryItems);
 
   useEffect(() => {
+    if (!supabase) return;
     supabase
       .from("gallery_items")
       .select("*")

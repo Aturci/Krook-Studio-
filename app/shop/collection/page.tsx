@@ -11,6 +11,7 @@ export default function CollectionPage() {
   const [items, setItems] = useState<Ring[]>(rings.filter((r) => r.category === "collection"));
 
   useEffect(() => {
+    if (!supabase) return;
     supabase
       .from("rings")
       .select("*")

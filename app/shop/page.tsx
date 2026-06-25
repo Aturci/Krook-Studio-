@@ -11,6 +11,7 @@ export default function ShopPage() {
   const [items, setItems] = useState<Ring[]>(rings);
 
   useEffect(() => {
+    if (!supabase) return;
     supabase
       .from("rings")
       .select("*")
