@@ -1,12 +1,41 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ProductCard from "@/components/ProductCard";
-import { rings } from "@/data/rings";
+import { rings, type Ring } from "@/data/rings";
 import { fadeInUp, stagger } from "@/lib/motion";
+import { supabase } from "@/lib/supabase";
 
 export default function CollectionPage() {
-  const products = rings.filter((r) => r.category === "collection");
+  const [items, setItems] = useState<Ring[]>(rings.filter((r) => r.category === "collection"));
+
+  useEffect(() => {
+    supabase
+      .from("rings")
+      .select("*")
+      .eq("category", "collection")
+      .order("sort_order")
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setItems(
+            data.map((r) => ({
+              id: r.id,
+              name: r.name,
+              slug: r.slug,
+              material: r.material,
+              stone: r.stone,
+              description: r.description,
+              price: r.price,
+              category: r.category,
+              image: r.image,
+              imageAlt: r.image_alt ?? undefined,
+              madeToOrder: r.made_to_order,
+            }))
+          );
+        }
+      });
+  }, []);
 
   return (
     <div className="min-h-screen pt-32 pb-24">
@@ -43,7 +72,7 @@ export default function CollectionPage() {
           variants={stagger}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
         >
-          {products.map((ring) => (
+          {items.map((ring) => (
             <motion.div key={ring.id} variants={fadeInUp}>
               <ProductCard ring={ring} />
             </motion.div>

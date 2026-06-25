@@ -1,12 +1,43 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { galleryItems } from "@/data/gallery";
+import { galleryItems, type GalleryItem } from "@/data/gallery";
 import { fadeInUp, stagger } from "@/lib/motion";
+import { supabase } from "@/lib/supabase";
+
+type DbGalleryItem = {
+  id: number;
+  image: string;
+  title: string;
+  linked_product_slug: string | null;
+  sort_order: number;
+};
 
 export default function GalleryPage() {
+  const [items, setItems] = useState<GalleryItem[]>(galleryItems);
+
+  useEffect(() => {
+    supabase
+      .from("gallery_items")
+      .select("*")
+      .order("sort_order")
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setItems(
+            (data as DbGalleryItem[]).map((r) => ({
+              id: r.id,
+              image: r.image,
+              title: r.title,
+              linkedProductSlug: r.linked_product_slug ?? undefined,
+            }))
+          );
+        }
+      });
+  }, []);
+
   return (
     <div className="min-h-screen pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -44,7 +75,7 @@ export default function GalleryPage() {
           variants={stagger}
           className="columns-1 sm:columns-2 lg:columns-3 gap-5"
         >
-          {galleryItems.map((item) => (
+          {items.map((item) => (
             <motion.div
               key={item.id}
               variants={fadeInUp}

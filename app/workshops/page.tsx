@@ -1,9 +1,22 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import WorkshopCard from "@/components/WorkshopCard";
 import { workshops, type Workshop } from "@/data/workshops";
 import { fadeInUp, stagger } from "@/lib/motion";
+import { supabase } from "@/lib/supabase";
+
+type DbWorkshop = {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  city: "Berlin" | "Cape Town";
+  spots_total: number;
+  spots_remaining: number;
+  price: number;
+};
 
 function groupByMonth(items: Workshop[]): Record<string, Workshop[]> {
   return items.reduce<Record<string, Workshop[]>>((acc, w) => {
@@ -17,7 +30,32 @@ function groupByMonth(items: Workshop[]): Record<string, Workshop[]> {
 }
 
 export default function WorkshopsPage() {
-  const byMonth = groupByMonth(workshops);
+  const [items, setItems] = useState<Workshop[]>(workshops);
+
+  useEffect(() => {
+    supabase
+      .from("workshops")
+      .select("*")
+      .order("date", { ascending: true })
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setItems(
+            (data as DbWorkshop[]).map((r) => ({
+              id: r.id,
+              title: r.title,
+              description: r.description,
+              date: r.date,
+              city: r.city,
+              spotsTotal: r.spots_total,
+              spotsRemaining: r.spots_remaining,
+              price: r.price,
+            }))
+          );
+        }
+      });
+  }, []);
+
+  const byMonth = groupByMonth(items);
 
   return (
     <div className="min-h-screen pt-32 pb-24">

@@ -1,11 +1,47 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import JournalCard from "@/components/JournalCard";
-import { journalPosts } from "@/data/journal";
+import { journalPosts, type JournalPost } from "@/data/journal";
 import { fadeInUp, stagger } from "@/lib/motion";
+import { supabase } from "@/lib/supabase";
+
+type DbJournalPost = {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  cover_image: string;
+  date: string;
+  tags: string[];
+};
 
 export default function JournalPage() {
+  const [items, setItems] = useState<JournalPost[]>(journalPosts);
+
+  useEffect(() => {
+    supabase
+      .from("journal_posts")
+      .select("*")
+      .order("date", { ascending: false })
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setItems(
+            (data as DbJournalPost[]).map((r) => ({
+              id: r.id,
+              title: r.title,
+              slug: r.slug,
+              excerpt: r.excerpt,
+              coverImage: r.cover_image,
+              date: r.date,
+              tags: r.tags,
+            }))
+          );
+        }
+      });
+  }, []);
+
   return (
     <div className="min-h-screen pt-32 pb-24">
       <div className="max-w-5xl mx-auto px-6">
@@ -43,7 +79,7 @@ export default function JournalPage() {
           variants={stagger}
           className="grid grid-cols-1 md:grid-cols-2 gap-14"
         >
-          {journalPosts.map((post) => (
+          {items.map((post) => (
             <motion.div key={post.id} variants={fadeInUp}>
               <JournalCard post={post} />
             </motion.div>
