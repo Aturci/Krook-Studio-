@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Barrio, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import ClientShell from "@/components/ClientShell";
 
 const barrio = Barrio({
   subsets: ["latin"],
@@ -41,9 +40,7 @@ export default function RootLayout({
       <body
         className={`${barrio.variable} ${playfair.variable} ${inter.variable} bg-void text-bone antialiased`}
       >
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ClientShell>{children}</ClientShell>
       </body>
     </html>
   );
